@@ -51,7 +51,6 @@ class App extends Component {
         return async () => {
           await this.setState(prevState => ({
             defStrArr: prevState.defStrArr.filter(el => el !== elem),
-
             tmpStr: prevState.tmpStr.concat({ ...elem, status })
           }));
         };
@@ -59,7 +58,6 @@ class App extends Component {
         return async () => {
           await this.setState(prevState => ({
             defStrArr: prevState.defStrArr.filter(el => el !== elem),
-
             tmpStr: prevState.tmpStr.slice(0, prevState.tmpStr.length - 1)
           }));
         };
@@ -125,7 +123,7 @@ class App extends Component {
                 type="text"
                 placeholder="Input string..."
                 ref={this.inputRef}
-                autoFocus
+                //autoFocus
               />
             </div>
           </div>
