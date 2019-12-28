@@ -68,7 +68,6 @@ class App extends Component {
           }));
         };
       } else if (status === "reject") {
-        console.log(status, elem.value);
         return async () => {
           await this.setState(prevState => ({
             defStrArr: prevState.defStrArr
