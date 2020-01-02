@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const ResultBox = ({ status, error }) => (
   <section className={`hero is-${status ? "primary" : "danger"}`}>
@@ -10,5 +11,16 @@ const ResultBox = ({ status, error }) => (
     </div>
   </section>
 );
+
+ResultBox.propTypes = {
+  status: PropTypes.bool.isRequired,
+  error: PropTypes.oneOf([
+    null,
+    PropTypes.shape({
+      text: PropTypes.string,
+      index: PropTypes.number
+    })
+  ]).isRequired
+};
 
 export default ResultBox;

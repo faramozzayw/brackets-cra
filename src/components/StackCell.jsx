@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 const StackCell = ({ status, children }) => {
   const [showAnim, updateAnimStatus] = useState(true);
@@ -19,6 +20,11 @@ const StackCell = ({ status, children }) => {
       {children}
     </li>
   );
+};
+
+StackCell.propTypes = {
+  status: PropTypes.string.isRequired,
+  children: PropTypes.oneOf([PropTypes.string, React.Children]).isRequired
 };
 
 export default StackCell;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import StackCell from "./StackCell";
 
@@ -24,6 +25,21 @@ const Stack = ({ type, name, data }) => {
       </ul>
     </article>
   );
+};
+
+Stack.propTypes = {
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  data: PropTypes.oneOf([
+    null,
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.number,
+        status: PropTypes.string,
+        value: PropTypes.string
+      })
+    )
+  ]).isRequired
 };
 
 export default Stack;
