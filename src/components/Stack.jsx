@@ -7,10 +7,11 @@ const Stack = ({ type, name, data }) => {
 
   const list = [...data].reverse().map(el => {
     const key = `${el.value}×${type}@${name}:key?${el.key}`;
+    const { status, value } = el;
 
     return (
-      <StackCell key={key} status={el.status}>
-        {el.value}
+      <StackCell key={key} status={status}>
+        {value}
       </StackCell>
     );
   });

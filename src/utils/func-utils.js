@@ -12,5 +12,7 @@ export function delay(fn, ms = 0) {
   };
 }
 
-export const getRandomArbitrary = (min, max) =>
-  Math.random() * (max - min) + min;
+export const getRandomArbitrary = (
+  min = Number.MIN_SAFE_INTEGER,
+  max = Number.MAX_SAFE_INTEGER
+) => Math.random() * (max - min) + min;

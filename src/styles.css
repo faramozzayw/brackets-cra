@@ -97,7 +97,7 @@ main {
     (1(2(s)2)1)
 */
 .stack:last-of-type .stack-item:not(.null):first-child[data-show-anim="true"] {
-  animation: add-elem 1s normal forwards ease-in-out 1;
+  animation: add-elem 1s normal forwards ease-in-out;
 }
 
 @keyframes process-data {

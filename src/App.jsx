@@ -11,13 +11,17 @@ import {
 } from "./utils/string-utils";
 import { delay, getRandomArbitrary } from "./utils/func-utils";
 
+import { resolve, reject, pending } from "./utils/consts";
+
+const initialState = {
+  defStrArr: null,
+  tmpStr: null,
+  result: null,
+  showResult: false
+};
+
 class App extends Component {
-  state = {
-    defStrArr: null,
-    tmpStr: null,
-    result: null,
-    showResult: false
-  };
+  state = { ...initialState };
 
   inputRef = createRef();
 
@@ -27,8 +31,8 @@ class App extends Component {
     const { value } = this.inputRef.current;
     let defStrArr = [...minifyStr(value)].reverse().map(el => ({
       value: el,
-      status: "pending",
-      key: getRandomArbitrary(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)
+      status: pending,
+      key: getRandomArbitrary()
     }));
 
     this.setState(
@@ -42,53 +46,49 @@ class App extends Component {
     );
   };
 
+  step = (elem, status) => {
+    if (status === resolve && isLeftBrackets(elem.value)) {
+      return async () => {
+        await this.setState(prevState => ({
+          defStrArr: prevState.defStrArr.filter(el => el.key !== elem.key),
+          tmpStr: prevState.tmpStr.concat({ ...elem, status })
+        }));
+      };
+    } else if (status === resolve && isRightBrackets(elem.value)) {
+      return async () => {
+        await this.setState(prevState => ({
+          defStrArr: prevState.defStrArr.filter(el => el.key !== elem.key),
+          tmpStr: prevState.tmpStr.slice(0, prevState.tmpStr.length - 1)
+        }));
+      };
+    } else if (status === resolve) {
+      return async () => {
+        await this.setState(prevState => ({
+          defStrArr: prevState.defStrArr.filter(el => el.key !== elem.key)
+        }));
+      };
+    } else if (status === reject) {
+      return async () => {
+        await this.setState(prevState => ({
+          defStrArr: prevState.defStrArr
+            .filter(el => el.key !== elem.key)
+            .concat({ ...elem, status })
+        }));
+      };
+    }
+  };
+
   anim = async () => {
     const { defStrArr, result } = this.state;
     const delayTime = 1000;
     const arr = [...defStrArr].reverse();
-
-    const step = (elem, status) => {
-      const resolve = "resolve";
-      const reject = "reject";
-
-      if (status === resolve && isLeftBrackets(elem.value)) {
-        return async () => {
-          await this.setState(prevState => ({
-            defStrArr: prevState.defStrArr.filter(el => el.key !== elem.key),
-            tmpStr: prevState.tmpStr.concat({ ...elem, status })
-          }));
-        };
-      } else if (status === resolve && isRightBrackets(elem.value)) {
-        return async () => {
-          await this.setState(prevState => ({
-            defStrArr: prevState.defStrArr.filter(el => el.key !== elem.key),
-            tmpStr: prevState.tmpStr.slice(0, prevState.tmpStr.length - 1)
-          }));
-        };
-      } else if (status === resolve) {
-        return async () => {
-          await this.setState(prevState => ({
-            defStrArr: prevState.defStrArr.filter(el => el.key !== elem.key)
-          }));
-        };
-      } else if (status === reject) {
-        return async () => {
-          await this.setState(prevState => ({
-            defStrArr: prevState.defStrArr
-              .filter(el => el.key !== elem.key)
-              .concat({ ...elem, status })
-          }));
-        };
-      }
-    };
-
     const { status, error } = result;
 
     let steps = arr
       .map((el, index) => {
-        if (!status && index === error.index - 1) return step(el, "reject");
+        if (!status && index === error.index - 1) return this.step(el, reject);
 
-        return step(el, "resolve");
+        return this.step(el, resolve);
       })
       .slice(0, error ? error.index : arr.length)
       .map(el => delay(el, delayTime));
@@ -97,19 +97,12 @@ class App extends Component {
       await fn();
     }
 
-    await this.setState({
+    this.setState({
       showResult: true
     });
   };
 
-  handleReset = () => {
-    this.setState({
-      defStrArr: null,
-      tmpStr: null,
-      result: null,
-      showResult: false
-    });
-  };
+  handleReset = () => this.setState({ ...initialState });
 
   render() {
     const { defStrArr, tmpStr, result, showResult } = this.state;
