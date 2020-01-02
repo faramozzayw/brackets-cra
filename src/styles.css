@@ -6,12 +6,9 @@
 
 html {
   background-color: whitesmoke;
-  /*
-  works on Firefox 
-  */
 }
 
-body {
+html {
   scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
   scrollbar-width: auto;
 }
@@ -57,24 +54,22 @@ main {
 
   text-align: center;
 
-  font-size: 5vmin;
+  font-size: 3vmin;
   font-weight: bold;
 
   border-right: var(--stack-border) solid firebrick;
   border-left: var(--stack-border) solid firebrick;
-
-  /*background-color: lightgray;*/
 }
 
-.stack li:first-child {
+.stack .stack-item:first-child {
   border-top: var(--stack-border) solid firebrick;
 }
 
-.stack li:not(:last-child) {
+.stack .stack-item:not(:last-child) {
   border-bottom: var(--stack-border) dashed firebrick;
 }
 
-.stack li:last-child {
+.stack .stack-item:last-child {
   border-bottom: var(--stack-border) solid firebrick;
 }
 
@@ -87,9 +82,6 @@ main {
 }
 
 .stack .stack-item.pending:first-child {
-  /*
-  background-image: linear-gradient(-90deg, red, yellow);
-  */
   animation: process-data 1s infinite normal;
 }
 
@@ -100,9 +92,39 @@ main {
 .stack .stack-item.reject {
   background-color: orangered;
 }
+/*
+  test example:
+    (1(2(s)2)1)
+*/
+.stack:last-of-type .stack-item:not(.null):first-child[data-show-anim="true"] {
+  animation: add-elem 1s normal forwards ease-in-out 1;
+}
 
 @keyframes process-data {
   50% {
     background-color: yellowgreen;
+    border-bottom: var(--stack-border) solid firebrick;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  to {
+    border-bottom: var(--stack-border) solid firebrick;
+    transform: translate(0, -100%);
+    opacity: 0;
+  }
+}
+
+@keyframes add-elem {
+  from {
+    opacity: 0;
+    transform: translate(0, -200%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0%);
   }
 }

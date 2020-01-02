@@ -11,3 +11,6 @@ export function delay(fn, ms = 0) {
     });
   };
 }
+
+export const getRandomArbitrary = (min, max) =>
+  Math.random() * (max - min) + min;

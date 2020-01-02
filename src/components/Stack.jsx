@@ -1,17 +1,12 @@
 import React from "react";
 
-import StackCell from "./StackCell.jsx";
-
-const getRandomArbitrary = (min, max) => Math.random() * (max - min) + min;
+import StackCell from "./StackCell";
 
 const Stack = ({ type, name, data }) => {
   if (!data) return null;
 
   const list = [...data].reverse().map(el => {
-    const key = `${el.value}×${type}@${name}:rand?${getRandomArbitrary(
-      0,
-      Number.MAX_SAFE_INTEGER
-    )}`;
+    const key = `${el.value}×${type}@${name}:key?${el.key}`;
 
     return (
       <StackCell key={key} status={el.status}>

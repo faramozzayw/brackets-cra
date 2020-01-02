@@ -1,4 +1,4 @@
-import { left, right, space } from "./consts.js";
+import { left /* right, space */ } from "./consts.js";
 
 export default class Stack {
   data = null;
@@ -28,9 +28,9 @@ export default class Stack {
       return hint === "string" ? this.data.toString() : NaN;
     });
 
-  [Symbol.iterator] = function*() {
+  *[Symbol.iterator]() {
     for (let i = this.length - 1; i >= 0; i--) {
       yield this.data[i];
     }
-  };
+  }
 }

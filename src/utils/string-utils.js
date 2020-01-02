@@ -1,4 +1,4 @@
-import { left, right, space } from "./consts.js";
+import { /* left, */ right, space } from "./consts.js";
 import Stack from "./Stack.js";
 
 const brackets = {
@@ -8,6 +8,7 @@ const brackets = {
 
 export const minifyStr = str =>
   `${[...str].filter(char => char.codePointAt(0) !== space).join("")}`;
+
 export const strToCharCodes = str =>
   Array.from([...str].map(char => char.codePointAt(0)));
 
@@ -37,11 +38,12 @@ export const analyzer = str => {
     if (char === brackets.left) {
       tmpStack.push(ch);
     } else if (char === brackets.right) {
-      if (tmpStack.empty())
+      if (tmpStack.empty()) {
         return generResult(false, {
           text: `Unclosed at ${index}`,
           index
         });
+      }
 
       if (emptyBrackets) {
         return generResult(false, {
@@ -58,11 +60,12 @@ export const analyzer = str => {
     index++;
   }
 
-  if (tmpStack.length)
+  if (tmpStack.length) {
     return generResult(false, {
-      text: `Empty at ${index}`,
+      text: `Unclosed at ${index}`,
       index: str.length
     });
+  }
 
   return generResult(true, null);
 };
