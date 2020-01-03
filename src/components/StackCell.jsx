@@ -24,7 +24,7 @@ const StackCell = ({ status, children }) => {
 
 StackCell.propTypes = {
   status: PropTypes.string.isRequired,
-  children: PropTypes.oneOf([PropTypes.string, React.Children]).isRequired
+  children: PropTypes.node.isRequired
 };
 
 export default StackCell;

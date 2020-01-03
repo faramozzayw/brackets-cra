@@ -30,8 +30,8 @@ const Stack = ({ type, name, data }) => {
 Stack.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  data: PropTypes.oneOf([
-    null,
+  data: PropTypes.oneOfType([
+    () => null,
     PropTypes.arrayOf(
       PropTypes.shape({
         key: PropTypes.number,
@@ -39,7 +39,7 @@ Stack.propTypes = {
         value: PropTypes.string
       })
     )
-  ]).isRequired
+  ])
 };
 
 export default Stack;

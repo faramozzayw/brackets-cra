@@ -20,7 +20,7 @@ ResultBox.propTypes = {
       text: PropTypes.string,
       index: PropTypes.number
     })
-  ]).isRequired
+  ])
 };
 
 export default ResultBox;

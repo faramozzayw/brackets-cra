@@ -113,6 +113,7 @@ class App extends Component {
           <legend className="field is-grouped is-grouped-centered">
             Enter your data:{" "}
           </legend>
+
           <div className="field is-grouped is-grouped-centered">
             <div className="control">
               <input
@@ -139,6 +140,7 @@ class App extends Component {
             </div>
           </div>
         </form>
+
         <section id="stack-section">
           <Stack data={defStrArr} name="def" type="left" />
           <Stack data={tmpStr} name="tmp" type="left" />
