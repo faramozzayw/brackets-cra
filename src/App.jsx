@@ -42,7 +42,7 @@ class App extends Component {
         result: analyzer(minifyStr(value)),
         showResult: false
       },
-      async () => await this.anim.bind(this)()
+      () => this.anim.bind(this)()
     );
   };
 
@@ -84,7 +84,7 @@ class App extends Component {
     const arr = [...defStrArr].reverse();
     const { status, error } = result;
 
-    let steps = arr
+    const steps = arr
       .map((el, index) => {
         if (!status && index === error.index - 1) return this.step(el, reject);
 

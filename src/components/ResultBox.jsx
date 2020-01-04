@@ -15,7 +15,7 @@ const ResultBox = ({ status, error }) => (
 ResultBox.propTypes = {
   status: PropTypes.bool.isRequired,
   error: PropTypes.oneOf([
-    null,
+    () => null,
     PropTypes.shape({
       text: PropTypes.string,
       index: PropTypes.number
