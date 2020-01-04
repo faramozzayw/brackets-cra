@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import StackCell from "./StackCell";
 
 const Stack = ({ type, name, data }) => {
-  if (!data) return null;
+  if (!data || !data.length) return null;
 
   const list = [...data].reverse().map(el => {
     const key = `${el.value}×${type}@${name}:key?${el.key}`;
@@ -18,7 +18,7 @@ const Stack = ({ type, name, data }) => {
   });
 
   return (
-    <article className="stack">
+    <article className={`stack ${name}`}>
       <ul>
         {list}
         <StackCell status="null">NULL</StackCell>

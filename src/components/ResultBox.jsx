@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ResultBox = ({ status, error }) => (
-  <section className={`hero is-${status ? "primary" : "danger"}`}>
+  <section className={`hero is-${status ? "primary" : "danger"} is-bold`}>
     <div className="hero-body">
       <div className="container">
         <h1 className="title">{status ? "Success" : "Error"}</h1>

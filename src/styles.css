@@ -34,6 +34,10 @@ main {
   padding-bottom: var(--padding-value);
 }
 
+form {
+  margin-bottom: 3rem;
+}
+
 #stack-section {
   display: flex;
   flex-flow: row;
@@ -45,16 +49,16 @@ main {
   margin: 4vw;
 
   min-width: 10vmin;
-  max-width: 35vmin;
+  max-width: 20vmin;
 }
 
 .stack li {
-  padding: 1vw;
+  padding: 0.45rem 1.125rem;
   margin: 0 1vw;
 
   text-align: center;
 
-  font-size: 3vmin;
+  font-size: 1.125rem;
   font-weight: bold;
 
   border-right: var(--stack-border) solid firebrick;
@@ -81,7 +85,7 @@ main {
   background-color: lightgray;
 }
 
-.stack .stack-item.pending:first-child {
+.stack.def .stack-item.pending:first-child {
   animation: process-data 1s infinite normal;
 }
 
@@ -94,9 +98,9 @@ main {
 }
 /*
   test example:
-    (1(2(s)2)1)
+    0(1(2(s)2)1)0
 */
-.stack:last-of-type .stack-item:not(.null):first-child[data-show-anim="true"] {
+.stack.tmp .stack-item.resolve:first-child[data-show-anim="true"] {
   animation: add-elem 1s normal forwards ease-in-out;
 }
 
