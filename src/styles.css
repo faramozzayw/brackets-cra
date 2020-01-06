@@ -96,10 +96,7 @@ form {
 .stack .stack-item.reject {
   background-color: orangered;
 }
-/*
-  test example:
-    0(1(2(s)2)1)0
-*/
+ 
 .stack.tmp .stack-item.resolve:first-child[data-show-anim="true"] {
   animation: add-elem 1s normal forwards ease-in-out;
 }
