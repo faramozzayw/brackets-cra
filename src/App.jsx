@@ -3,15 +3,12 @@ import React, { Component, createRef } from "react";
 import Stack from "./components/Stack";
 import ResultBox from "./components/ResultBox";
 
-import {
-  analyzer,
-  minifyStr,
-  isLeftBrackets,
-  isRightBrackets
-} from "./utils/string-utils";
-import { delay, getRandomArbitrary } from "./utils/func-utils";
+import analyzer from "./utils/analyzer";
+import { delay, minifyStr, getRandomArbitrary } from "./utils/func-utils";
+import { isLeftBrackets, isRightBrackets } from "./utils/predicates";
+import { state } from "./utils/consts";
 
-import { resolve, reject, pending } from "./utils/consts";
+const { resolve, reject, pending } = state;
 
 const initialState = {
   defStrArr: null,

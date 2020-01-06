@@ -1,4 +1,4 @@
-import { left /* right, space */ } from "./consts.js";
+import { left } from "./consts.js";
 
 export default class Stack {
   data = null;

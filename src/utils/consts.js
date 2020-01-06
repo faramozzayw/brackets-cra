@@ -3,6 +3,13 @@ export const right = "right";
 
 export const space = 32;
 
-export const resolve = "resolve";
-export const reject = "reject";
-export const pending = "pending";
+export const state = {
+  resolve: "resolve",
+  reject: "reject",
+  pending: "pending"
+};
+
+export const bracketsCodePoint = {
+  left: 40,
+  right: 41
+};

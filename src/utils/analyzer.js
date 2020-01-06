@@ -1,21 +1,7 @@
-import { /* left, */ right, space } from "./consts.js";
+import { right } from "./consts.js";
 import Stack from "./Stack.js";
 
-const brackets = {
-  left: "(".codePointAt(0),
-  right: ")".codePointAt(0)
-};
-
-export const minifyStr = str =>
-  `${[...str].filter(char => char.codePointAt(0) !== space).join("")}`;
-
-export const strToCharCodes = str =>
-  Array.from([...str].map(char => char.codePointAt(0)));
-
-export const isLeftBrackets = char => char.codePointAt(0) === brackets.left;
-export const isRightBrackets = char => char.codePointAt(0) === brackets.right;
-
-export const analyzer = str => {
+const analyzer = str => {
   const generResult = (status, error) => ({
     status,
     error
@@ -69,3 +55,5 @@ export const analyzer = str => {
 
   return generResult(true, null);
 };
+
+export default analyzer;
