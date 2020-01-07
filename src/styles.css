@@ -1,131 +1,131 @@
 :root {
-  --stack-border: 5px;
-  --scrollbar-track-color: whitesmoke;
-  --scrollbar-thumb-color: darkgray;
+	--stack-border: 5px;
+	--scrollbar-track-color: whitesmoke;
+	--scrollbar-thumb-color: darkgray;
 }
 
 html {
-  background-color: whitesmoke;
+	background-color: whitesmoke;
 }
 
 html {
-  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
-  scrollbar-width: auto;
+	scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+	scrollbar-width: auto;
 }
 
 body::-webkit-scrollbar-track {
-  background-color: var(--scrollbar-track-color);
+	background-color: var(--scrollbar-track-color);
 }
 
 body::-webkit-scrollbar {
-  width: 0.75rem;
-  background-color: var(--scrollbar-track-color);
+	width: 0.75rem;
+	background-color: var(--scrollbar-track-color);
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb-color);
-  outline: 1px solid slategrey;
+	background-color: var(--scrollbar-thumb-color);
+	outline: 1px solid slategrey;
 }
 
 main {
-  --padding-value: 4em;
-  margin: 0;
-  padding-top: var(--padding-value);
-  padding-bottom: var(--padding-value);
+	--padding-value: 4em;
+	margin: 0;
+	padding-top: var(--padding-value);
+	padding-bottom: var(--padding-value);
 }
 
 form {
-  margin-bottom: 3rem;
+	margin-bottom: 3rem;
 }
 
 #stack-section {
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  align-items: flex-end;
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: flex-end;
 }
 
 .stack {
-  margin: 4vw;
+	margin: 4vw;
 
-  min-width: 10vmin;
-  max-width: 20vmin;
+	min-width: 10vmin;
+	max-width: 20vmin;
 }
 
 .stack li {
-  padding: 0.45rem 1.125rem;
-  margin: 0 1vw;
+	padding: 0.45vmin 1.125vmin;
+	margin: 0 1vw;
 
-  text-align: center;
+	text-align: center;
 
-  font-size: 1.125rem;
-  font-weight: bold;
+	font-size: 5vmin;
+	font-weight: bold;
 
-  border-right: var(--stack-border) solid firebrick;
-  border-left: var(--stack-border) solid firebrick;
+	border-right: var(--stack-border) solid firebrick;
+	border-left: var(--stack-border) solid firebrick;
 }
 
 .stack .stack-item:first-child {
-  border-top: var(--stack-border) solid firebrick;
+	border-top: var(--stack-border) solid firebrick;
 }
 
 .stack .stack-item:not(:last-child) {
-  border-bottom: var(--stack-border) dashed firebrick;
+	border-bottom: var(--stack-border) dashed firebrick;
 }
 
 .stack .stack-item:last-child {
-  border-bottom: var(--stack-border) solid firebrick;
+	border-bottom: var(--stack-border) solid firebrick;
 }
 
 .stack .stack-item.null {
-  background-color: palevioletred;
+	background-color: palevioletred;
 }
 
 .stack .stack-item.pending {
-  background-color: lightgray;
+	background-color: lightgray;
 }
 
 .stack.def .stack-item.pending:first-child {
-  animation: process-data 1s infinite normal;
+	animation: process-data 1s infinite normal;
 }
 
 .stack .stack-item.resolve {
-  background-color: yellowgreen;
+	background-color: yellowgreen;
 }
 
 .stack .stack-item.reject {
-  background-color: orangered;
+	background-color: orangered;
 }
- 
+
 .stack.tmp .stack-item.resolve:first-child[data-show-anim="true"] {
-  animation: add-elem 1s normal forwards ease-in-out;
+	animation: add-elem 1s normal forwards ease-in-out;
 }
 
 @keyframes process-data {
-  50% {
-    background-color: yellowgreen;
-    border-bottom: var(--stack-border) solid firebrick;
-  }
+	50% {
+		background-color: yellowgreen;
+		border-bottom: var(--stack-border) solid firebrick;
+	}
 
-  75% {
-    opacity: 1;
-  }
+	75% {
+		opacity: 1;
+	}
 
-  to {
-    border-bottom: var(--stack-border) solid firebrick;
-    transform: translate(0, -100%);
-    opacity: 0;
-  }
+	to {
+		border-bottom: var(--stack-border) solid firebrick;
+		transform: translate(0, -100%);
+		opacity: 0;
+	}
 }
 
 @keyframes add-elem {
-  from {
-    opacity: 0;
-    transform: translate(0, -200%);
-  }
+	from {
+		opacity: 0;
+		transform: translate(0, -200%);
+	}
 
-  to {
-    opacity: 1;
-    transform: translate(0, 0%);
-  }
+	to {
+		opacity: 1;
+		transform: translate(0, 0%);
+	}
 }

@@ -13,3 +13,4 @@ Technology stack:
 - Bulma
 - Prop-types
 - Pure CSS
+- Jest

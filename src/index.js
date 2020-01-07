@@ -10,8 +10,8 @@ import "./styles.css";
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
-  <ErrorBoundary FallbackComponent={App}>
-    <App />
-  </ErrorBoundary>,
-  rootElement
+	<ErrorBoundary FallbackComponent={App}>
+		<App />
+	</ErrorBoundary>,
+	rootElement,
 );

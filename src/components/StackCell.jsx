@@ -1,30 +1,26 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+const createClassName = (...classes) =>
+	`stack-item ${classes.join(" ")} has-text-centered is-half`;
+
 const StackCell = ({ status, children }) => {
-  const [showAnim, updateAnimStatus] = useState(true);
+	const [showAnim, updateAnimStatus] = useState(true);
 
-  const className = `
-    stack-item 
-    ${status} 
-    has-text-centered 
-    is-half
-  `;
-
-  return (
-    <li
-      className={className}
-      data-show-anim={showAnim.toString()}
-      onAnimationEnd={() => updateAnimStatus(false)}
-    >
-      {children}
-    </li>
-  );
+	return (
+		<li
+			className={createClassName(status)}
+			data-show-anim={showAnim.toString()}
+			onAnimationEnd={() => updateAnimStatus(false)}
+		>
+			{children}
+		</li>
+	);
 };
 
 StackCell.propTypes = {
-  status: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
+	status: PropTypes.string.isRequired,
+	children: PropTypes.node.isRequired,
 };
 
 export default StackCell;
