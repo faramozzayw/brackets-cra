@@ -21,26 +21,37 @@ class App extends Component {
 	state = { ...initialState };
 
 	inputRef = createRef();
+	checkboxRef = createRef();
 
 	handleSubmit = e => {
 		e.preventDefault();
 
 		const { value } = this.inputRef.current;
-		let defStrArr = [...minifyStr(value)].reverse().map(el => ({
-			value: el,
-			status: pending,
-			key: getRandomArbitrary(),
-		}));
 
-		this.setState(
-			{
-				defStrArr,
-				tmpStr: [],
-				result: analyzer(minifyStr(value)),
-				showResult: false,
-			},
-			() => this.anim.bind(this)(),
-		);
+		const result = analyzer(minifyStr(value));
+
+		if (this.checkboxRef.current.checked) {
+			this.setState({
+				result,
+				showResult: true,
+			});
+		} else {
+			let defStrArr = [...minifyStr(value)].reverse().map(el => ({
+				value: el,
+				status: pending,
+				key: getRandomArbitrary(),
+			}));
+
+			this.setState(
+				{
+					defStrArr,
+					tmpStr: [],
+					result,
+					showResult: false,
+				},
+				() => this.anim.bind(this)(),
+			);
+		}
 	};
 
 	step = (elem, status) => {
@@ -121,6 +132,13 @@ class App extends Component {
 								//autoFocus
 							/>
 						</div>
+					</div>
+
+					<div className="field is-grouped is-grouped-centered">
+						<label className="checkbox">
+							<input type="checkbox" ref={this.checkboxRef} /> Show result
+							without animations
+						</label>
 					</div>
 
 					<div className="field is-grouped is-grouped-centered">

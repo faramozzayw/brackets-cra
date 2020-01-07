@@ -58,7 +58,7 @@ form {
 
 	text-align: center;
 
-	font-size: 5vmin;
+	font-size: 1.5rem;
 	font-weight: bold;
 
 	border-right: var(--stack-border) solid firebrick;
@@ -127,5 +127,21 @@ form {
 	to {
 		opacity: 1;
 		transform: translate(0, 0%);
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.stack {
+		margin: 4vw;
+
+		min-width: 15vmin;
+		max-width: 25vmin;
+	}
+
+	.stack li {
+		padding: 1.25vmin 2vmin;
+		margin: 0 1vw;
+
+		font-size: 1.25rem;
 	}
 }
