@@ -1,7 +1,23 @@
 import analyzer from "./../analyzer";
 
-const truthyCases = ["(0)", "1(1(1)+(2)0)", "1(23124)", "0(1(2(s)2)1)0"];
-const falsyCases = ["(0)))", "()", ")(", "1((((24)", "0(1(2s)2)1)0"];
+const truthyCases = [
+	"(0)",
+	"1(1(1)+(2)0)",
+	"1(23124)",
+	"0(1(2(s)2)1)0",
+	"(_)+(_)",
+	"((_))",
+];
+const falsyCases = [
+	"(0)))",
+	"()",
+	")(",
+	"1((((24)",
+	"0(1(2s)2)1)0",
+	")",
+	"(",
+	"((_)))",
+];
 
 describe("analyzer function", () => {
 	for (const $case of truthyCases) {
@@ -13,7 +29,7 @@ describe("analyzer function", () => {
 	}
 
 	for (const $case of falsyCases) {
-		test(`${$case} is truthy case`, () => {
+		test(`${$case} is falsy case`, () => {
 			const { status } = analyzer($case);
 
 			expect(status).toBeFalsy();
