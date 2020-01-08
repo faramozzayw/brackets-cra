@@ -88,7 +88,7 @@ class App extends Component {
 
 	anim = async () => {
 		const { defStrArr, result } = this.state;
-		const delayTime = 1000;
+		const delayTime = 1 * 1000;
 		const arr = [...defStrArr].reverse();
 		const { status, error } = result;
 

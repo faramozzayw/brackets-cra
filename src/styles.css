@@ -2,6 +2,7 @@
 	--stack-border: 5px;
 	--scrollbar-track-color: whitesmoke;
 	--scrollbar-thumb-color: darkgray;
+	--basic-anim-duration: 1s;
 }
 
 html {
@@ -29,6 +30,7 @@ body::-webkit-scrollbar-thumb {
 
 main {
 	--padding-value: 4em;
+
 	margin: 0;
 	padding-top: var(--padding-value);
 	padding-bottom: var(--padding-value);
@@ -86,7 +88,7 @@ form {
 }
 
 .stack.def .stack-item.pending:first-child {
-	animation: process-data 1s infinite normal;
+	animation: process-data var(--basic-anim-duration) forwards normal;
 }
 
 .stack .stack-item.resolve {
@@ -97,8 +99,8 @@ form {
 	background-color: orangered;
 }
 
-.stack.tmp .stack-item.resolve:first-child[data-show-anim="true"] {
-	animation: add-elem 1s normal forwards ease-in-out;
+.stack.tmp .stack-item:not(.null)[data-show-anim="true"] {
+	animation: add-elem var(--basic-anim-duration) normal forwards ease-in-out;
 }
 
 @keyframes process-data {
