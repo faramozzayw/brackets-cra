@@ -36,9 +36,24 @@ class App extends Component {
 				showResult: true,
 			});
 		} else {
+			// TODO: move to utilities & use const for ["left", "right", "trash"];
+			const f = (v = "") => {
+				let r = " ";
+
+				if (isLeftBrackets(v)) {
+					r = r.concat("left");
+				} else if (isRightBrackets(v)) {
+					r = r.concat("right");
+				} else {
+					r = r.concat("trash");
+				}
+
+				return r;
+			};
+
 			let defStrArr = [...minifyStr(value)].reverse().map(el => ({
 				value: el,
-				status: pending.concat(isLeftBrackets(el) ? "" : " trash"),
+				status: pending.concat(f(el)),
 				key: getRandomArbitrary(),
 			}));
 
