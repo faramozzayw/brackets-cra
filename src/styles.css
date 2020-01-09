@@ -91,6 +91,10 @@ form {
 	animation: process-data var(--basic-anim-duration) forwards normal;
 }
 
+.stack.def .stack-item.pending.trash:first-child {
+	animation: process-data-to-trash var(--basic-anim-duration) forwards normal;
+}
+
 .stack .stack-item.resolve {
 	background-color: yellowgreen;
 }
@@ -129,6 +133,57 @@ form {
 	to {
 		opacity: 1;
 		transform: translate(0, 0%);
+	}
+}
+
+/*
+@keyframes process-data-res {
+	50% {
+		background-color: yellowgreen;
+		border-bottom: var(--stack-border) solid firebrick;
+	}
+
+	75% {
+		transform: translate(0, -100%);
+	}
+
+	to {
+		border-bottom: var(--stack-border) solid firebrick;
+		transform: translate(200%, 0);
+	}
+}
+*/
+
+@keyframes process-data-to-trash {
+	25% {
+		background-color: yellowgreen;
+		border-bottom: var(--stack-border) solid firebrick;
+	}
+
+	50% {
+		transform: translate(0, -100%);
+		opacity: 1;
+	}
+
+	75% {
+		border-bottom: var(--stack-border) solid firebrick;
+		transform: translate(-200%, -100%);
+		opacity: 0.5;
+	}
+
+	80% {
+		transform: translate(-100%, -100%) rotate(360deg);
+	}
+
+	to {
+		--final-color: firebrick;
+
+		transform: translate(-200%, -100%) rotate(360deg) scale(0);
+		opacity: 0;
+
+		border-color: var(--final-color);
+		background-color: var(--final-color);
+		color: var(--final-color);
 	}
 }
 

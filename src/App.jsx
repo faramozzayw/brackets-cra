@@ -38,7 +38,7 @@ class App extends Component {
 		} else {
 			let defStrArr = [...minifyStr(value)].reverse().map(el => ({
 				value: el,
-				status: pending,
+				status: pending.concat(isLeftBrackets(el) ? "" : " trash"),
 				key: getRandomArbitrary(),
 			}));
 
