@@ -3,6 +3,8 @@
 	--scrollbar-track-color: whitesmoke;
 	--scrollbar-thumb-color: darkgray;
 	--basic-anim-duration: 1s;
+	--stack-solid-border: var(--stack-border) solid firebrick;
+	--stack-dashed-border: var(--stack-border) dashed firebrick;
 }
 
 html {
@@ -63,36 +65,24 @@ form {
 	font-size: 1.5rem;
 	font-weight: bold;
 
-	border-right: var(--stack-border) solid firebrick;
-	border-left: var(--stack-border) solid firebrick;
+	border-right: var(--stack-solid-border);
+	border-left: var(--stack-solid-border);
 }
 
 .stack .stack-item:first-child {
-	border-top: var(--stack-border) solid firebrick;
+	border-top: var(--stack-solid-border);
 }
 
 .stack .stack-item:not(:last-child) {
-	border-bottom: var(--stack-border) dashed firebrick;
+	border-bottom: var(--stack-dashed-border);
 }
 
 .stack .stack-item:last-child {
-	border-bottom: var(--stack-border) solid firebrick;
-}
-
-.stack .stack-item.null {
-	background-color: palevioletred;
+	border-bottom: var(--stack-solid-border);
 }
 
 .stack .stack-item.pending {
 	background-color: lightgray;
-}
-
-.stack.def .stack-item.pending:first-child {
-	animation: process-data var(--basic-anim-duration) forwards normal;
-}
-
-.stack.def .stack-item.pending.trash:first-child {
-	animation: process-data-to-trash var(--basic-anim-duration) forwards normal;
 }
 
 .stack .stack-item.resolve {
@@ -101,6 +91,18 @@ form {
 
 .stack .stack-item.reject {
 	background-color: orangered;
+}
+
+.stack .stack-item.null {
+	background-color: palevioletred;
+}
+
+.stack.def .stack-item.pending.trash:first-child {
+	animation: process-data-to-trash var(--basic-anim-duration) forwards normal;
+}
+
+.stack.def .stack-item.pending.left:first-child {
+	animation: process-data-to-resolve var(--basic-anim-duration) forwards normal;
 }
 
 .stack.tmp .stack-item:not(.null)[data-show-anim="true"] {
@@ -124,20 +126,7 @@ form {
 	}
 }
 
-@keyframes add-elem {
-	from {
-		opacity: 0;
-		transform: translate(0, -200%);
-	}
-
-	to {
-		opacity: 1;
-		transform: translate(0, 0%);
-	}
-}
-
-/*
-@keyframes process-data-res {
+@keyframes process-data-to-resolve {
 	50% {
 		background-color: yellowgreen;
 		border-bottom: var(--stack-border) solid firebrick;
@@ -145,14 +134,13 @@ form {
 
 	75% {
 		transform: translate(0, -100%);
+		border-bottom: var(--stack-border) solid firebrick;
 	}
 
 	to {
-		border-bottom: var(--stack-border) solid firebrick;
-		transform: translate(200%, 0);
+		transform: translate(100%, -100%) scale(0.5);
 	}
 }
-*/
 
 @keyframes process-data-to-trash {
 	25% {
@@ -184,6 +172,29 @@ form {
 		border-color: var(--final-color);
 		background-color: var(--final-color);
 		color: var(--final-color);
+	}
+}
+
+@keyframes delete-elem {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+		transform: scale(0);
+	}
+}
+
+@keyframes add-elem {
+	from {
+		opacity: 0;
+		transform: translate(0, -200%) scale(0.5);
+	}
+
+	to {
+		opacity: 1;
+		transform: translate(0, 0%) scale(1);
 	}
 }
 
