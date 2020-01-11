@@ -11,9 +11,9 @@ const Stack = ({ type, name, data }) => {
 		const { status, value } = el;
 
 		return (
-			<StackCell key={key} status={status}>
+			<StackCell.Auto key={key} status={status}>
 				{value}
-			</StackCell>
+			</StackCell.Auto>
 		);
 	});
 
@@ -21,7 +21,7 @@ const Stack = ({ type, name, data }) => {
 		<article className={`stack ${name}`}>
 			<ul>
 				{list}
-				<StackCell status="null">NULL</StackCell>
+				<StackCell.NULL />
 			</ul>
 		</article>
 	);
